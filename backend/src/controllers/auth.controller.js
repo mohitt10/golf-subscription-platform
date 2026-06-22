@@ -20,7 +20,15 @@ export async function signUp(req, res) {
 
     if (profileError) {
         return  res.status(400).json({error: profileError.message });
-        console.log("Profile Error!");
     }
     res.status(201).json({ user: data.user });
+}
+
+export async function signIn(req, res) {
+    const {email, password} = req.body;
+    const {data, error} = await supabase.auth.signInWithPassword({ email, password});
+    if(error) {
+        return res.status(400).json({error: error.message});
+    }
+    res.status(200).json({ user: data.user , session: data.session });
 }
