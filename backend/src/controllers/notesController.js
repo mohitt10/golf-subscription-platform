@@ -1,1 +1,0 @@
-// Write the respective functions for each route (i.e. controller)
